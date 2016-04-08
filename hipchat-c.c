@@ -40,7 +40,7 @@ void usage() {
 }
 
 void print_version(){
-	printf("\n\nhipChat-C  Version 0.1\n\n");
+	printf("\nhipChat-C  Version 0.1\n\n");
 	exit(0);
 }
 
@@ -50,6 +50,14 @@ int main(int argc, char** argv) {
 	char *room;
 	char *token;
 	char *message;
+        CURL *curl;
+        CURLcode res;
+
+        char *api_end_point;
+        char *postopts;
+        char *myheaders;
+        struct curl_slist *chunk = NULL;
+
 	int opt, optidx = 1;
 	static struct option opts[] =
 	{
@@ -61,7 +69,7 @@ int main(int argc, char** argv) {
 		{0, 0, 0, 0}
 	};
 
-	while((opt = getopt_long(argc, argv, "hv:r:t:m:", opts, &optidx))) {
+	while((opt = getopt_long(argc, argv, "hvr:t:m:", opts, &optidx))) {
 		if(opt < 0) {
 			break;
 		}
@@ -70,15 +78,27 @@ int main(int argc, char** argv) {
 			case 'h':
 					usage();
 			case 't':
+					if (strlen(optarg) < 1 ) {
+						printf("invalid size of token!");
+						exit(1);
+					}
 
 					token = (char *) malloc(1 + strlen(optarg) * sizeof(char));
 					strcpy(token,optarg);
 					break;
 			case 'm':
+					if (strlen(optarg) < 1 ) {
+						printf("invalid size of message!");
+						exit(1);
+					}
 					message = (char *) malloc(1 + strlen(optarg) * sizeof(char));
 					strcpy(message,optarg);
 					break;
 			case 'r':
+					if (strlen(optarg) < 1 ) {
+						printf("invalid size of room!");
+						exit(1);
+					}
 					room = (char *) malloc(1 + strlen(optarg) * sizeof(char));
 					strcpy(room,optarg);
 					break;			
@@ -88,21 +108,13 @@ int main(int argc, char** argv) {
 		}
 	}
 
-	if(argc < 5) {
+	if(argc < 6) {
 		usage();
 	}
 
 	printf("\nUsing token: %s\n",token);
         printf("\nSending message to room: %s\n",room); 
 	printf("\nMessage: %s\n",message);
-
-	CURL *curl;
-	CURLcode res;
-
-	char *api_end_point;
-	char *postopts;
-        char *myheaders;
-	struct curl_slist *chunk = NULL;
 
         myheaders = (char *) malloc(1 + strlen("Content-Type: application/json") * sizeof(char));
         sprintf(myheaders,"Content-Type: application/json");
@@ -114,7 +126,6 @@ int main(int argc, char** argv) {
 	curl = curl_easy_init();
 
 	if(curl) {
-
 
 		postopts = (char*) malloc((1 + strlen("{\"message\"=\"\"}") + strlen(message)) * sizeof(char));
 		sprintf(postopts,"{\"message\":\"%s\"}",message);
@@ -138,7 +149,4 @@ int main(int argc, char** argv) {
 		curl_global_cleanup();
 
 	return 0;
-
-
-
 }
