@@ -9,6 +9,11 @@ installed. Then run the following:
 
 gcc hipchat-c.c  -lcurl -o hipchat-c
 
+### INSTALL hipchat-c
+
+make
+make install
+
 ### EXAMPLE 
 
 ./hipchat-c -r Devopslab -t 123l9QAwdmsTCrKJrUriowYereOlkJch4myk5R65a -m "puppet or chef?"
