@@ -4,8 +4,7 @@ Copyright (c) 2016, Eugenio Marzo <eugenio.marzo@sourcesense.com>
 
 ### INSTALL hipchat-c
 
-make
-make install
+make && make install
 
 ### BUILDING but no install
 
