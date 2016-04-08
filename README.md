@@ -1,6 +1,6 @@
 ## A small program written in C for sending message to hipchat
 
-Copyright (c) 2016, Eugenio Marzo <eugenio.marzo@yahoo.it>
+Copyright (c) 2016, Eugenio Marzo <eugenio.marzo@sourcesense.com>
 
 ### BUILDING
 

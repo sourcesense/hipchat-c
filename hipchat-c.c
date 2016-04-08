@@ -29,8 +29,12 @@
 
 void usage() {
 	printf("options:\n");
-	printf("  -h, --help           this help\n");
+	printf("  -h, --help            this help\n");
 	printf("  -v, --version		software version\n");
+	printf("  -r, --room		room name\n");
+	printf("  -t, --token		authentication token\n");
+	printf("  -m, --message		message\n");
+	printf("\n\nExample:	hipchat-c -r Devopslab -t 123l9QAwdmsTCrKJrUriowYereOlkJch4myk5R65a -m 'puppet or chef?' \n");
 	printf("\n");
 	exit(1);
 }
@@ -57,13 +61,14 @@ int main(int argc, char** argv) {
 		{0, 0, 0, 0}
 	};
 
-	while((opt = getopt_long(argc, argv, "h:v:r:t:m:", opts, &optidx))) {
+	while((opt = getopt_long(argc, argv, "hv:r:t:m:", opts, &optidx))) {
 		if(opt < 0) {
 			break;
 		}
 		switch(opt) {
 			case 0:   break;
-			case 'h': /* fallthrough */
+			case 'h':
+					usage();
 			case 't':
 
 					token = (char *) malloc(1 + strlen(optarg) * sizeof(char));
