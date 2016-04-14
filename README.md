@@ -1,4 +1,4 @@
-## A small program written in C for sending message to hipchat
+## Client for sending message to Hipchat
 
 Copyright (c) 2016, Eugenio Marzo <eugenio.marzo@sourcesense.com>
 
