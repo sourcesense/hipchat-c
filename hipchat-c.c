@@ -34,7 +34,9 @@ void usage() {
 	printf("  -r, --room		room name\n");
 	printf("  -t, --token		authentication token\n");
 	printf("  -m, --message		message\n");
+	printf("  -n  --nagios-check       \"nagios script with arguments\"");
 	printf("\n\nExample:	hipchat-c -r Devopslab -t 123l9QAwdmsTCrKJrUriowYereOlkJch4myk5R65a -m 'puppet or chef?' \n");
+	printf("\n\nExample:    hipchat-c -r Devopslab -t 123l9QAwdmsTCrKJrUriowYereOlkJch4myk5R65a -m 'Disk is full' -c \"./check_disk  -w 5% -c 1%\" \n");
 	printf("\n");
 	exit(1);
 }
