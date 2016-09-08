@@ -2,6 +2,7 @@ prefix :=/usr/local
 PROGRAM := hipchat-c
 
 all:
+	test -d $(prefix)/$(PROGRAM) || mkdir $(prefix)/$(PROGRAM)
 	gcc hipchat-c.c -lcurl -o $(prefix)/$(PROGRAM)/$(PROGRAM)
 
 install: all
